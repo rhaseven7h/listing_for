@@ -1,13 +1,34 @@
-ListingFor
-==========
+ListingFor Rails Plug-In
+========================
 
-Introduction goes here.
+Very simple plugin to generate and use a simple rails dsl for
+describing ActiveRecord collection listings.
 
 
 Example
 =======
 
-Example goes here.
+Using HAML:
+
+<code>
+  %br
+  - listing_for "Products Listing", @products, :will_paginate => true do |list|
+    - list.add Product.human_attribute_name(:upc_code) do |product|
+      = product.upc_code
+    - list.add Product.human_attribute_name(:name) do |product|
+      = product.name
+    - list.add Product.human_attribute_name(:description) do |product|
+      = product.description
+    - list.add Product.human_attribute_name(:price) do |product|
+      = number_to_currency(product.price)
+    - list.add Product.human_attribute_name(:stock), :align => :right do |product|
+      = number_to_currency(product.stock)
+    - list.add Product.human_attribute_name(:unit), :align => :right do |product|
+      = product.unit.name
+    - list.add "Actions" do |product|
+      = product.upc_code
+</code>
 
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+
+Copyright (c) 2009 Gabriel Medina, released under the MIT license
