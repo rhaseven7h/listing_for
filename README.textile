@@ -1,17 +1,36 @@
-ListingFor Rails Plug-In
-========================
+h1. ListingFor Rails Plug-In
 
-Very simple plugin to generate and use a simple rails dsl for
-describing ActiveRecord collection listings.
+p. Very simple plugin to generate and use a simple rails dsl for
+describing ActiveRecord collection listings, it doesn't add any 
+awesome behavior, it just looks nice.
 
+h2. Installation
 
-Example
-=======
+p. First install the actual plugin:
 
-Using HAML:
+<pre><code>
+script/plugin install git://github.com/rha7dotcom/listing_for.git
+</code></pre>
 
-<code>
-  %br
+p. Then run the generator, to place the theme files in public drectory:
+
+<pre><code>
+script/generate listing_for
+</code></pre>
+
+p. The add a css stylesheet link tag line to your layout, at the appropriate place:
+
+<pre><code>
+= stylesheet_link_tag 'listings/ui-lightness', :media => "screen, projection"
+</code></pre>
+
+p. And that's all, just follow the example below to get an idea of how it works, hopefully with a bit more time, I'll add more themes and give more help on usage.
+
+h2. Example
+
+p. Using HAML, this:
+
+<pre><code>
   - listing_for "Products Listing", @products, :will_paginate => true do |list|
     - list.add Product.human_attribute_name(:upc_code) do |product|
       = product.upc_code
@@ -27,8 +46,19 @@ Using HAML:
       = product.unit.name
     - list.add "Actions" do |product|
       = product.upc_code
-</code>
+</code></pre>
 
+p. Produces this:
 
+!http://i48.tinypic.com/10hkqoo.png!
 
-Copyright (c) 2009 Gabriel Medina, released under the MIT license
+h2. Contributions
+
+p. Please feel free to contribute, modify at your heart's content and send me a pull request, I'd be glad and honored to hear from you.
+
+p. Greetings,
+
+p. *Gabriel Medina*
+
+p. <small><em>Copyright (c) 2009 Gabriel Medina, released under the MIT license</em></small>
+
